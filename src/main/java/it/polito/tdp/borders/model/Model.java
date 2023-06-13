@@ -72,37 +72,39 @@ public class Model {
 		return elencoStati ;
 	}
 	
-	public void statiVisitabili (Country statoPartenza, List<Country> visitati){
-		
-		visitati.add(statoPartenza) ;
-		
-		for(Country c: Graphs.neighborListOf(this.graph, statoPartenza) ) {
-			if(!visitati.contains(c)) {
-				statiVisitabili(c, visitati) ;
-			}
-		}
-	}
+//	METODO RICORSIVO
 	
-	public List<Country> trovaPath(Country c) {
-		
-		List<Country> path = new ArrayList<Country>() ;
-
-		statiVisitabili(c,path);
-		return path ;
-	}
-	
-//	public String getComponenteConnessa(Country partenza) {
-//		String percorso = "" ;
-//		Set<Country> visitati = new HashSet<>();
-//		DepthFirstIterator<Country, DefaultEdge> it = 
-//				new DepthFirstIterator<>(this.graph,partenza);
-//		while (it.hasNext()) {
-//			visitati.add(it.next());
+//	public void statiVisitabili (Country statoPartenza, List<Country> visitati){
+//		
+//		visitati.add(statoPartenza) ;
+//		
+//		for(Country c: Graphs.neighborListOf(this.graph, statoPartenza) ) {
+//			if(!visitati.contains(c)) {
+//				statiVisitabili(c, visitati) ;
+//			}
 //		}
-//		for(Country c: visitati) {
-//			percorso += c.getStateName() +"\n" ;
-//		}
-//		return percorso ;
 //	}
+//	
+//	public List<Country> trovaPath(Country c) {
+//		
+//		List<Country> path = new ArrayList<Country>() ;
+//
+//		statiVisitabili(c,path);
+//		return path ;
+//	}
+	
+	public String getComponenteConnessa(Country partenza) {
+		String percorso = "" ;
+		Set<Country> visitati = new HashSet<>();
+		DepthFirstIterator<Country, DefaultEdge> it = 
+				new DepthFirstIterator<>(this.graph,partenza);
+		while (it.hasNext()) {
+			visitati.add(it.next());
+		}
+		for(Country c: visitati) {
+			percorso += c.getStateName() +"\n" ;
+		}
+		return percorso ;
+	}
 	
 }

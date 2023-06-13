@@ -65,8 +65,8 @@ public class FXMLController {
     	for(Country c : this.model.elencoStati()) {
     		if(c.getStateName().equals(countryName)) {
     			txtResult.setText("IL PERCORSO TROVATO E' : \n") ;
-    	    	//txtResult.appendText(this.model.getComponenteConnessa(c));
-    			txtResult.appendText(this.model.trovaPath(c).toString());
+    	    	txtResult.appendText(this.model.getComponenteConnessa(c));
+//    			txtResult.appendText(this.model.trovaPath(c).toString());
     	    	return;
     		}
     	}
